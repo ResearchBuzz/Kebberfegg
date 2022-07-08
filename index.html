@@ -1,0 +1,398 @@
+<html>
+<head>
+<title>Kebberfegg - Make keyword-based RSS feeds</title>
+</head>
+<body> 
+
+<h2>Kebberfegg is a tool for making keyword-based RSS feeds.</h2>
+
+<h3>Start by entering a query that you want to monitor as a keyword-based RSS feed.</h3>
+
+ <label>Keywords go here:</label>
+        <input type="text" id="feedquery" value="Dallas Mavericks">
+<br><br>
+
+<h3>RSS Feeds Available</h3>
+<i>Tick a box and the URL for an RSS feed will appear. Beef up your feed reader!</i>
+
+<h4>General Search</h4>
+
+<label for="rssB">Tick this box for a Bing RSS feed:</label> 
+<input type="checkbox" id="rssB" onclick="rssBfeed()">
+
+<div id="rssBtext">   </div>
+
+<br>
+
+<label for="rssWP">Tick this box for a Wordpress.com RSS feed:</label> 
+<input type="checkbox" id="rssWP" onclick="rssWPfeed()">
+
+<div id="rssWPtext">   </div>
+
+<br>
+
+<label for="rssIA">Tick this box for an Internet Archive (searching by description) feed:</label>
+
+
+<input type="checkbox" id="rssIA" onclick="rssIAfeed()">
+
+<div id="rssIAtext">   </div>
+
+<h4>News Search</h4>
+
+<label for="rssBN">Tick this box for a Bing News RSS feed:</label> 
+<input type="checkbox" id="rssBN" onclick="rssBNfeed()">
+
+<div id="rssBNtext">   </div>
+
+<br>
+
+<label for="rssGN">Tick this box for a Google News RSS feed:</label> 
+<input type="checkbox" id="rssGN" onclick="rssGNfeed()">
+
+<div id="rssGNtext">   </div>
+
+<br>
+
+<label for="rssHN">Tick this box for a Hacker News RSS feed:</label> 
+<input type="checkbox" id="rssHN" onclick="rssHNfeed()">
+
+<div id="rssHNtext">   </div>
+
+<br>
+
+<label for="rssBL">Tick this box for an Blawg Search feed:</label> 
+
+
+<input type="checkbox" id="rssBL" onclick="rssBLfeed()">
+
+<div id="rssBLtext">   </div>
+
+
+
+<h4>Social Media Search</h4>
+
+<label for="rssRD">Tick this box for a Reddit RSS feed:</label> 
+<input type="checkbox" id="rssRD" onclick="rssRDfeed()">
+
+<div id="rssRDDtext">   </div>
+
+<h4>Government Search</h4>
+
+<label for="rssEP">Tick this box for an EPA RSS feed:</label> 
+<input type="checkbox" id="rssEP" onclick="rssEPfeed()">
+
+<div id="rssEPtext">   </div>
+
+<br>
+
+<label for="rssFR">Tick this box for U.S. Federal Register feed:</label>
+
+
+<input type="checkbox" id="rssFR" onclick="rssFRfeed()">
+
+<div id="rssFRtext">   </div>
+
+
+<h4>Medical / Research Search</h4>
+
+
+<label for="rssCT">Tick this box for an ClinicalTrials.gov feed:</label> <input type="checkbox" id="rssCT" onclick="rssCTfeed()"><br>
+<i>Please note this searches ClinicalTrials.gov by general keyword, <b>not</b> by disease/condition.</i> 
+
+<div id="rssCTtext">   </div>
+
+
+<br><br>
+Stay tuned for more. 
+<script>
+
+
+
+// The function for each checkbox.
+
+function rssBfeed() {
+
+var RSSQuery = document.getElementById("feedquery").value
+RSSQuery2 = encodeURI(RSSQuery)
+console.log(RSSQuery)
+
+  var checkBox = document.getElementById("rssB");
+  var Bquerystem = "https://www.bing.com/search?format=RSS&q="
+  var Bqueryfull = Bquerystem+RSSQuery2
+  var Bquerydisplaysuffix = "<br> RSS Feed for Bing Query:"+" "+RSSQuery+":"
+  var Bquerydisplay = Bquerydisplaysuffix+" "+Bqueryfull.link(Bqueryfull)
+  
+  var text = document.getElementById("rssBtext");
+  if (checkBox.checked == true){
+    var div = document.getElementById("rssBtext");
+
+     div.innerHTML = Bquerydisplay;
+  } else {
+     text.style.display = "none";
+  }
+}
+
+// Bing News function 
+
+
+
+function rssBNfeed() {
+
+var RSSQuery = document.getElementById("feedquery").value
+RSSQuery2 = encodeURI(RSSQuery)
+console.log(RSSQuery)
+
+  var checkBox = document.getElementById("rssBN");
+  var BNquerystem = "https://www.bing.com/news/search?format=RSS&q="
+  var BNqueryfull = BNquerystem+RSSQuery2
+  var BNquerydisplaysuffix = "<br> RSS Feed for Bing News Query:"+" "+RSSQuery+":"
+  var BNquerydisplay = BNquerydisplaysuffix+" "+BNqueryfull.link(BNqueryfull)
+  
+  var text = document.getElementById("rssBNtext");
+  if (checkBox.checked == true){
+    var div = document.getElementById("rssBNtext");
+
+     div.innerHTML = BNquerydisplay;
+  } else {
+     text.style.display = "none";
+  }
+}
+
+// Google News function 
+
+
+
+function rssGNfeed() {
+
+var RSSQuery = document.getElementById("feedquery").value
+RSSQuery2 = encodeURI(RSSQuery)
+console.log(RSSQuery)
+
+  var checkBox = document.getElementById("rssGN");
+  var GNquerystem = "https://news.google.com/rss/search?q="
+  var GNqueryfull = GNquerystem+RSSQuery2
+  var GNquerydisplaysuffix = "<br> RSS Feed for Google News Query:"+" "+RSSQuery+":"
+  var GNquerydisplay = GNquerydisplaysuffix+" "+GNqueryfull.link(GNqueryfull)
+  
+  var text = document.getElementById("rssGNtext");
+  if (checkBox.checked == true){
+    var div = document.getElementById("rssGNtext");
+
+     div.innerHTML = GNquerydisplay;
+  } else {
+     text.style.display = "none";
+  }
+}
+
+
+// WordPress.com function 
+
+function rssWPfeed() {
+
+var RSSQuery = document.getElementById("feedquery").value
+RSSQuery2 = encodeURI(RSSQuery)
+console.log(RSSQuery)
+
+  var checkBox = document.getElementById("rssWP");
+  var WPquerystem = "https://en.search.wordpress.com/?f=feed&q="
+  var WPqueryfull = WPquerystem+RSSQuery2
+  var WPquerydisplaysuffix = "<br> RSS Feed for WordPress.com Query:"+" "+RSSQuery+":"
+  var WPquerydisplay = WPquerydisplaysuffix+" "+WPqueryfull.link(WPqueryfull)
+  
+  var text = document.getElementById("rssWPtext");
+  if (checkBox.checked == true){
+    var div = document.getElementById("rssWPtext");
+
+     div.innerHTML = WPquerydisplay;
+  } else {
+     text.style.display = "none";
+  }
+}
+
+// Reddit function 
+
+
+function rssRDfeed() {
+
+var RSSQuery = document.getElementById("feedquery").value
+RSSQuery2 = encodeURI(RSSQuery)
+console.log(RSSQuery)
+
+  var checkBox = document.getElementById("rssRD");
+  var RDquerystem = "https://www.reddit.com/search.rss?sort=new&q="
+  var RDqueryfull = RDquerystem+RSSQuery2
+  var RDquerydisplaysuffix = "<br> RSS Feed for Reddit Query:"+" "+RSSQuery+":"
+  var RDquerydisplay = RDquerydisplaysuffix+" "+RDqueryfull.link(RDqueryfull)
+  
+  var text = document.getElementById("rssRDDtext");
+  if (checkBox.checked == true){
+    var div = document.getElementById("rssRDDtext");
+
+     div.innerHTML = RDquerydisplay;
+  } else {
+     text.style.display = "none";
+  }
+}
+
+// HackerNews function 
+
+
+function rssHNfeed() {
+
+var RSSQuery = document.getElementById("feedquery").value
+RSSQuery2 = encodeURI(RSSQuery)
+console.log(RSSQuery)
+
+  var checkBox = document.getElementById("rssHN");
+  var HNquerystem = "https://hnrss.org/newest?q="
+  var HNqueryfull = HNquerystem+RSSQuery2
+  var HNquerydisplaysuffix = "<br> RSS Feed for Hacker News Query:"+" "+RSSQuery+":"
+  var HNquerydisplay = HNquerydisplaysuffix+" "+HNqueryfull.link(HNqueryfull)
+  
+  var text = document.getElementById("rssHNtext");
+  if (checkBox.checked == true){
+    var div = document.getElementById("rssHNtext");
+
+     div.innerHTML = HNquerydisplay;
+  } else {
+     text.style.display = "none";
+  }
+}
+
+
+// EPA function 
+
+
+function rssEPfeed() {
+
+var RSSQuery = document.getElementById("feedquery").value
+RSSQuery2 = encodeURI(RSSQuery)
+console.log(RSSQuery)
+
+  var checkBox = document.getElementById("rssEP");
+  var EPquerystem = "https://www.epa.gov/newsreleases/search/rss?search_api_views_fulltext="
+  var EPqueryfull = EPquerystem+RSSQuery2
+  var EPquerydisplaysuffix = "<br> RSS Feed for EPA search results:"+" "+RSSQuery+":"
+  var EPquerydisplay = EPquerydisplaysuffix+" "+EPqueryfull.link(EPqueryfull)
+  
+  var text = document.getElementById("rssEPtext");
+  if (checkBox.checked == true){
+    var div = document.getElementById("rssEPtext");
+
+     div.innerHTML = EPquerydisplay;
+  } else {
+     text.style.display = "none";
+  }
+}
+
+
+// Clinicaltrials.gov function 
+
+
+function rssCTfeed() {
+
+var RSSQuery = document.getElementById("feedquery").value
+RSSQuery2 = encodeURI(RSSQuery)
+console.log(RSSQuery)
+
+  var checkBox = document.getElementById("rssCT");
+  var CTquerystem = "https://clinicaltrials.gov/ct2/results/rss.xml?rcv_d=14&lup_d=&sel_rss=new14&count=10000&term="
+  var CTqueryfull = CTquerystem+RSSQuery2
+  var CTquerydisplaysuffix = "<br> RSS Feed for ClinicalTrials.gov (keyword search):"+" "+RSSQuery+":"
+  var CTquerydisplay = CTquerydisplaysuffix+" "+CTqueryfull.link(CTqueryfull)
+  
+  var text = document.getElementById("rssCTtext");
+  if (checkBox.checked == true){
+    var div = document.getElementById("rssCTtext");
+
+     div.innerHTML = CTquerydisplay;
+  } else {
+     text.style.display = "none";
+  }
+}
+
+
+// Blawgsearch Function
+
+
+function rssBLfeed() {
+
+var RSSQuery = document.getElementById("feedquery").value
+RSSQuery2 = encodeURI(RSSQuery)
+console.log(RSSQuery)
+
+  var checkBox = document.getElementById("rssBL");
+  var BLquerystem = "https://blawgsearch.justia.com/rss/search?mode=rss&l=20&s=0&query="
+  var BLqueryfull = BLquerystem+RSSQuery2
+  var BLquerydisplaysuffix = "<br> RSS Feed for Blawg Search:"+" "+RSSQuery+":"
+  var BLquerydisplay = BLquerydisplaysuffix+" "+BLqueryfull.link(BLqueryfull)
+  
+  var text = document.getElementById("rssBLtext");
+  if (checkBox.checked == true){
+    var div = document.getElementById("rssBLtext");
+
+     div.innerHTML = BLquerydisplay;
+  } else {
+     text.style.display = "none";
+  }
+}
+
+
+
+// Internet Archive Function
+
+
+function rssIAfeed() {
+
+var RSSQuery = document.getElementById("feedquery").value
+RSSQuery2 = encodeURI(RSSQuery)
+console.log(RSSQuery)
+
+  var checkBox = document.getElementById("rssIA");
+  var IAquerystem = "https://archive.org/services/collection-rss.php?query=description:"
+  var IAqueryfull = IAquerystem+RSSQuery2
+  var IAquerydisplaysuffix = "<br> RSS Feed for Internet Archive description search:"+" "+RSSQuery+":"
+  var IAquerydisplay = IAquerydisplaysuffix+" "+IAqueryfull.link(IAqueryfull)
+  
+  var text = document.getElementById("rssIAtext");
+  if (checkBox.checked == true){
+    var div = document.getElementById("rssIAtext");
+
+     div.innerHTML = IAquerydisplay;
+  } else {
+     text.style.display = "none";
+  }
+}
+
+
+
+// U.S. Federal Register Function
+
+
+function rssFRfeed() {
+
+var RSSQuery = document.getElementById("feedquery").value
+RSSQuery2 = encodeURI(RSSQuery)
+console.log(RSSQuery)
+
+  var checkBox = document.getElementById("rssFR");
+  var FRquerystem = "https://www.federalregister.gov/api/v1/documents.rss?conditions%5Bterm%5D="
+  var FRqueryfull = FRquerystem+RSSQuery2
+  var FRquerydisplaysuffix = "<br> RSS Feed for U.S. Federal Register search:"+" "+RSSQuery+":"
+  var FRquerydisplay = FRquerydisplaysuffix+" "+FRqueryfull.link(FRqueryfull)
+  
+  var text = document.getElementById("rssFRtext");
+  if (checkBox.checked == true){
+    var div = document.getElementById("rssFRtext");
+
+     div.innerHTML = FRquerydisplay;
+  } else {
+     text.style.display = "none";
+  }
+}
+
+
+</script>
+</body>
+<html>
